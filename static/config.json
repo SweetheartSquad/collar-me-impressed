@@ -1,0 +1,94 @@
+{
+	"types": [{
+			"label": "bg",
+			"type": "cycle",
+			"x": 0.5,
+			"y": 0.5,
+			"arrowX": 0.25,
+			"arrowY": 0.25,
+			"arrowGap": 0.5
+		},
+		{
+			"label": "base",
+			"type": "cycle",
+			"x": 0.75,
+			"y": 0.5,
+			"arrowX": 0,
+			"arrowY": -0.25,
+			"arrowGap": 0.5
+		},
+		{
+			"label": "collar",
+			"type": "cycle",
+			"x": 0.75,
+			"y": 0.5,
+			"arrowX": 0,
+			"arrowY": 0,
+			"arrowGap": 0.5
+		},
+		{
+			"label": "bit",
+			"type": "drag-and-drop"
+		}
+	],
+	"sprites": [{
+			"label": "bg",
+			"spr": "bg 1",
+			"x": 0,
+			"y": 0
+		}, {
+			"label": "bg",
+			"spr": "bg 2",
+			"x": 0,
+			"y": 0
+		},
+		{
+			"label": "base",
+			"spr": "cat 1",
+			"x": 0,
+			"y": 0
+		},
+		{
+			"label": "base",
+			"spr": "cat 2",
+			"x": 0,
+			"y": 0
+		},
+		{
+			"label": "collar",
+			"spr": "collar 1",
+			"x": 0,
+			"y": 0
+		},
+		{
+			"label": "collar",
+			"spr": "collar 2",
+			"x": 0,
+			"y": 0
+		},
+		{
+			"label": "collar",
+			"spr": "collar 3",
+			"x": 0,
+			"y": 0
+		},
+		{
+			"label": "bit",
+			"spr": "one",
+			"x": 0.1,
+			"y": 0.1
+		},
+		{
+			"label": "bit",
+			"spr": "two",
+			"x": 0.2,
+			"y": 0.2
+		},
+		{
+			"label": "bit",
+			"spr": "three",
+			"x": 0.3,
+			"y": 0.3
+		}
+	]
+}
