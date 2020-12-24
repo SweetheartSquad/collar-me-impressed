@@ -112,6 +112,7 @@ export function init() {
 			stage.addChild(next.spr);
 			stage.addChild(prev.spr);
 			next.onClick = () => {
+				Loader.shared.resources.btn.data.play();
 				next.selectAnim = 1.0;
 				layer.children[layer.active].visible = false;
 				layer.active += 1;
@@ -119,6 +120,7 @@ export function init() {
 				layer.children[layer.active].visible = true;
 			};
 			prev.onClick = () => {
+				Loader.shared.resources.btn.data.play();
 				prev.selectAnim = 1.0;
 				layer.children[layer.active].visible = false;
 				layer.active -= 1;
@@ -138,6 +140,7 @@ export function init() {
 	});
 	save.spr.anchor.x = save.spr.anchor.y = 1.0;
 	save.onClick = () => {
+		Loader.shared.resources.btn.data.play();
 		save.selectAnim = 1.0;
 		saveImage();
 	};

@@ -1,3 +1,4 @@
+import { Loader } from 'pixi.js';
 import { mouse } from './input-mouse';
 import { Interactive } from './Interactive';
 import { lerp } from './utils';
@@ -31,9 +32,11 @@ export class Draggable extends Interactive {
 		Interactive.selected.spr.parent.addChildAt(Interactive.selected.spr, Interactive.selected.spr.parent.children.length);
 		Draggable.offset.x = mouse.pos.x - Interactive.selected.spr.x;
 		Draggable.offset.y = mouse.pos.y - Interactive.selected.spr.y;
+		Loader.shared.resources.pickup.data.play();
 	}
 
 	onRelease() {
+		Loader.shared.resources.drop.data.play();
 		Interactive.selected.selected = false;
 		Interactive.selected = null;
 	}

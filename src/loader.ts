@@ -34,6 +34,9 @@ export async function load() {
 			loop: true,
 			volume: 0,
 		})
+		.add('pickup', 'audio/pickup.mp3')
+		.add('drop', 'audio/drop.mp3')
+		.add('btn', 'audio/btn.mp3')
 		.add('arrow', 'img/arrow.png')
 		.add('arrow_flipped', 'img/arrow_flipped.png')
 		.add('save', 'img/save.png')
