@@ -48,7 +48,10 @@ export class Interactive {
 
 	underMouse() {
 		return (
-			mouse.pos.x > this.spr.x - this.spr.width / 2 && mouse.pos.x < this.spr.x + this.spr.width / 2 && mouse.pos.y > this.spr.y - this.spr.height / 2 && mouse.pos.y < this.spr.y + this.spr.height / 2
+			mouse.pos.x > this.spr.x - this.spr.width * this.spr.anchor.x &&
+			mouse.pos.x < this.spr.x + this.spr.width * this.spr.anchor.x &&
+			mouse.pos.y > this.spr.y - this.spr.height * this.spr.anchor.y &&
+			mouse.pos.y < this.spr.y + this.spr.height * this.spr.anchor.y
 		);
 	}
 
@@ -72,9 +75,12 @@ export class Interactive {
 			if (d.spr.y > size.y) {
 				d.v.y += 1;
 			}
-			if (d.spr.x < -size.x || d.spr.x > size.x*2 || d.spr.y < -size.y || d.spr.y > size.y * 2) {
+			if (d.spr.x < -size.x || d.spr.x > size.x * 2 || d.spr.y < -size.y || d.spr.y > size.y * 2) {
 				d.spr.destroy();
-				this.interactives.splice(this.interactives.findIndex(i => i === d), 1)
+				this.interactives.splice(
+					this.interactives.findIndex(i => i === d),
+					1
+				);
 			}
 		}
 
