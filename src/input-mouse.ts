@@ -29,6 +29,7 @@ export const mouse = {
 		this.element.addEventListener('mousedown', mouse.onDown.bind(mouse));
 		this.element.addEventListener('mousemove', mouse.onMove.bind(mouse));
 		this.element.addEventListener('wheel', mouse.onWheel.bind(mouse));
+		this.element.addEventListener("DOMMouseScroll", mouse.onWheel.bind(mouse));
 	},
 
 	update: function () {
@@ -65,7 +66,8 @@ export const mouse = {
 		this.delta.y = this.pos.y - this.prev.y;
 	},
 	onWheel: function (event) {
-		this.mouseWheel = event.deltaY || event.originalEvent.wheelDelta;
+		this.mouseWheel = Math.sign(event.deltaY || event.originalEvent?.wheelDelta || 0);
+		event.preventDefault();
 	},
 
 	isDown: function () {
