@@ -14,7 +14,25 @@
 			"x": 0.76,
 			"y": 0.527,
 			"arrowX": -0.065,
+			"arrowY": -0.4,
+			"arrowGap": 0.49
+		},
+		{
+			"label": "eyes",
+			"type": "cycle",
+			"x": 0.655,
+			"y": 0.377,
+			"arrowX": 0.04,
 			"arrowY": -0.1,
+			"arrowGap": 0.49
+		},
+		{
+			"label": "mouth",
+			"type": "cycle",
+			"x": 0.655,
+			"y": 0.377,
+			"arrowX": 0.04,
+			"arrowY": 0.05,
 			"arrowGap": 0.49
 		},
 		{
@@ -33,236 +51,359 @@
 	],
 	"sprites": [{
 			"label": "bg",
-			"spr":"bg 1",
-			"x":0,
-			"y":0
+			"spr": "bg 1"
 		}, {
 			"label": "bg",
-			"spr":"bg 2",
-			"x":0,
-			"y":0
+			"spr": "bg 2"
 		}, {
 			"label": "bg",
-			"spr":"bg 3",
-			"x":0,
-			"y":0
+			"spr": "bg 3"
 		}, {
 			"label": "bg",
-			"spr":"bg 4",
-			"x":0,
-			"y":0
+			"spr": "bg 4"
 		}, {
 			"label": "bg",
-			"spr":"bg 5",
-			"x":0,
-			"y":0
+			"spr": "bg 5"
 		}, {
 			"label": "bg",
-			"spr":"bg 6",
-			"x":0,
-			"y":0
+			"spr": "bg 6"
 		}, {
 			"label": "bg",
-			"spr":"bg 7",
-			"x":0,
-			"y":0
+			"spr": "bg 7"
 		}, {
 			"label": "bg",
-			"spr":"bg 8",
-			"x":0,
-			"y":0
+			"spr": "bg 8"
 		}, {
 			"label": "bg",
-			"spr":"bg 9",
-			"x":0,
-			"y":0
+			"spr": "bg 9"
 		}, {
 			"label": "bg",
-			"spr":"bg 10",
-			"x":0,
-			"y":0
+			"spr": "bg 10"
 		}, {
 			"label": "bg",
-			"spr":"bg 11",
-			"x":0,
-			"y":0
+			"spr": "bg 11"
 		}, {
 			"label": "bg",
-			"spr":"bg 12",
-			"x":0,
-			"y":0
+			"spr": "bg 12"
 		}, {
 			"label": "bg",
-			"spr":"bg 13",
-			"x":0,
-			"y":0
+			"spr": "bg 13"
 		}, {
 			"label": "bg",
-			"spr":"bg 14",
-			"x":0,
-			"y":0
+			"spr": "bg 14"
 		}, {
 			"label": "bg",
-			"spr":"bg 15",
-			"x":0,
-			"y":0
+			"spr": "bg 15"
 		}, {
 			"label": "bg",
-			"spr":"bg 16",
-			"x":0,
-			"y":0
+			"spr": "bg 16"
 		}, {
 			"label": "bg",
-			"spr":"bg 17",
-			"x":0,
-			"y":0
+			"spr": "bg 17"
 		}, {
 			"label": "bg",
-			"spr":"bg 18",
-			"x":0,
-			"y":0
+			"spr": "bg 18"
 		}, {
 			"label": "bg",
-			"spr":"bg 19",
-			"x":0,
-			"y":0
+			"spr": "bg 19"
 		}, {
 			"label": "bg",
-			"spr":"bg 20",
-			"x":0,
-			"y":0
+			"spr": "bg 20"
 		}, {
 			"label": "bg",
-			"spr":"bg 21",
-			"x":0,
-			"y":0
+			"spr": "bg 21"
 		}, {
 			"label": "bg",
-			"spr":"bg 22",
-			"x":0,
-			"y":0
+			"spr": "bg 22"
 		}, {
 			"label": "bg",
-			"spr":"bg 23",
-			"x":0,
-			"y":0
+			"spr": "bg 23"
 		}, {
 			"label": "bg",
-			"spr":"bg 24",
-			"x":0,
-			"y":0
+			"spr": "bg 24"
 		}, {
 			"label": "bg",
-			"spr":"bg 25",
-			"x":0,
-			"y":0
+			"spr": "bg 25"
 		},
 		{
 			"label": "base",
-			"spr":"cat_orange",
-			"x":0,
-			"y":0
+			"spr": "cat_orange"
 		},
 		{
 			"label": "base",
-			"spr":"cat_white",
-			"x":0,
-			"y":0
+			"spr": "cat_white"
+		},
+		{
+			"label": "base",
+			"spr": "cat_grey"
+		},
+		{
+			"label": "base",
+			"spr": "cat_black"
+		},
+		{
+			"label": "base",
+			"spr": "cat_calico"
+		},
+		{
+			"label": "base",
+			"spr": "cat_cow"
 		},
 		{
 			"label": "collar",
-			"spr":"collar_red",
-			"x":0,
-			"y":0
+			"spr": "collar_red"
 		},
 		{
 			"label": "collar",
-			"spr":"collar_blue",
-			"x":0,
-			"y":0
+			"spr": "collar_blue"
 		},
 		{
 			"label": "collar",
-			"spr":"collar_yellow",
-			"x":0,
-			"y":0
+			"spr": "collar_yellow"
 		},
 		{
 			"label": "collar",
-			"spr":"collar_green",
-			"x":0,
-			"y":0
+			"spr": "collar_green"
+		},
+		{
+			"label": "collar",
+			"spr": "collar_purple"
+		},
+		{
+			"label": "collar",
+			"spr": "collar_white"
+		},
+		{
+			"label": "collar",
+			"spr": "collar_black"
 		},
 		{
 			"label": "bit",
-			"spr":"bow_red",
-			"x":0.07,
-			"y":0.1
+			"spr": "bow_red",
+			"x": 0.07,
+			"y": 0.1
 		},
 		{
 			"label": "bit",
-			"spr":"bow_blue",
-			"x":0.165,
-			"y":0.1
+			"spr": "bow_blue",
+			"x": 0.165,
+			"y": 0.1
 		},
 		{
 			"label": "bit",
-			"spr":"bow_yellow",
-			"x":0.26,
-			"y":0.1
+			"spr": "bow_yellow",
+			"x": 0.26,
+			"y": 0.1
 		},
 		{
 			"label": "bit",
-			"spr":"bow_green",
-			"x":0.355,
-			"y":0.1
+			"spr": "bow_green",
+			"x": 0.355,
+			"y": 0.1
 		},
 		{
 			"label": "bit",
-			"spr":"square_silver",
-			"x":0.07,
-			"y":0.2
+			"spr": "square_silver",
+			"x": 0.07,
+			"y": 0.2
 		},
 		{
 			"label": "bit",
-			"spr":"square_gold",
-			"x":0.165,
-			"y":0.2
+			"spr": "square_gold",
+			"x": 0.165,
+			"y": 0.2
 		},
 		{
 			"label": "bit",
-			"spr":"circle_silver",
-			"x":0.26,
-			"y":0.2
+			"spr": "circle_silver",
+			"x": 0.26,
+			"y": 0.2
 		},
 		{
 			"label": "bit",
-			"spr":"circle_gold",
-			"x":0.355,
-			"y":0.2
+			"spr": "circle_gold",
+			"x": 0.355,
+			"y": 0.2
 		},
 		{
 			"label": "bit",
-			"spr":"spike_silver",
-			"x":0.07,
-			"y":0.3
+			"spr": "spike_silver",
+			"x": 0.07,
+			"y": 0.3
 		},
 		{
 			"label": "bit",
-			"spr":"spike_gold",
-			"x":0.165,
-			"y":0.3
+			"spr": "spike_gold",
+			"x": 0.165,
+			"y": 0.3
 		},
 		{
 			"label": "bit",
-			"spr":"bell_silver",
-			"x":0.26,
-			"y":0.3
+			"spr": "bell_silver",
+			"x": 0.26,
+			"y": 0.3
 		},
 		{
 			"label": "bit",
-			"spr":"bell_gold",
-			"x":0.355,
-			"y":0.3
-		}]
+			"spr": "bell_gold",
+			"x": 0.355,
+			"y": 0.3
+		},
+		{
+			"label": "bit",
+			"spr": "bow_purple",
+			"x": 0.07,
+			"y": 0.41
+		},
+		{
+			"label": "bit",
+			"spr": "gem_purple",
+			"x": 0.165,
+			"y": 0.41
+		},
+		{
+			"label": "bit",
+			"spr": "purple_smile",
+			"x": 0.26,
+			"y": 0.41
+		},
+		{
+			"label": "bit",
+			"spr": "purple_star",
+			"x": 0.355,
+			"y": 0.41
+		},
+		{
+			"label": "bit",
+			"spr": "gem_red",
+			"x": 0.07,
+			"y": 0.53
+		},
+		{
+			"label": "bit",
+			"spr": "gem_blue",
+			"x": 0.165,
+			"y": 0.53
+		},
+		{
+			"label": "bit",
+			"spr": "gem_yellow",
+			"x": 0.26,
+			"y": 0.53
+		},
+		{
+			"label": "bit",
+			"spr": "gem_green",
+			"x": 0.355,
+			"y": 0.53
+		},
+		{
+			"label": "bit",
+			"spr": "ditag_silver",
+			"x": 0.07,
+			"y": 0.68
+		},
+		{
+			"label": "bit",
+			"spr": "ditag_gold",
+			"x": 0.165,
+			"y": 0.68
+		},
+		{
+			"label": "bit",
+			"spr": "tag_silver",
+			"x": 0.26,
+			"y": 0.68
+		},
+		{
+			"label": "bit",
+			"spr": "tag_gold",
+			"x": 0.355,
+			"y": 0.68
+		},
+		{
+			"label": "bit",
+			"spr": "holly",
+			"x": 0.07,
+			"y": 0.85
+		},
+		{
+			"label": "bit",
+			"spr": "snowflake",
+			"x": 0.165,
+			"y": 0.85
+		},
+		{
+			"label": "bit",
+			"spr": "sweetheart",
+			"x": 0.26,
+			"y": 0.85
+		},
+		{
+			"label": "bit",
+			"spr": "crown",
+			"x": 0.355,
+			"y": 0.85
+		}, {
+			"label": "eyes",
+			"spr": "eyes 1"
+		}, {
+			"label": "eyes",
+			"spr": "eyes 2"
+		}, {
+			"label": "eyes",
+			"spr": "eyes 3"
+		}, {
+			"label": "eyes",
+			"spr": "eyes 4"
+		}, {
+			"label": "eyes",
+			"spr": "eyes 5"
+		}, {
+			"label": "eyes",
+			"spr": "eyes 6"
+		}, {
+			"label": "eyes",
+			"spr": "eyes 7"
+		}, {
+			"label": "eyes",
+			"spr": "eyes 8"
+		}, {
+			"label": "eyes",
+			"spr": "eyes 9"
+		}, {
+			"label": "mouth",
+			"spr": "mouth 1"
+		}, {
+			"label": "mouth",
+			"spr": "mouth 2"
+		}, {
+			"label": "mouth",
+			"spr": "mouth 3"
+		}, {
+			"label": "mouth",
+			"spr": "mouth 4"
+		}, {
+			"label": "mouth",
+			"spr": "mouth 5"
+		}, {
+			"label": "mouth",
+			"spr": "mouth 6"
+		}, {
+			"label": "mouth",
+			"spr": "mouth 7"
+		}, {
+			"label": "mouth",
+			"spr": "mouth 8"
+		}, {
+			"label": "mouth",
+			"spr": "mouth 9"
+		}, {
+			"label": "mouth",
+			"spr": "mouth 10"
+		}, {
+			"label": "mouth",
+			"spr": "mouth 11"
+		}
+	]
 }
