@@ -82,8 +82,8 @@ export function init() {
 			btns.push(s);
 		} else {
 			const s = new Sprite(Loader.shared.resources[sprite.spr].texture);
-			s.x = sprite.x;
-			s.y = sprite.y;
+			s.x = sprite.x || 0;
+			s.y = sprite.y || 0;
 			s.anchor.x = s.anchor.y = 0.5;
 			layer.addChild(s);
 		}

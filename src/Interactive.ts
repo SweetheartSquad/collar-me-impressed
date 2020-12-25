@@ -13,8 +13,8 @@ export class Interactive {
 		const sprite = new Sprite(Loader.shared.resources[spr].texture);
 		sprite.anchor.x = sprite.anchor.y = 0.5;
 		this.spr = sprite;
-		this.spr.x = x * size.x;
-		this.spr.y = y * size.y;
+		this.spr.x = (x || 0) * size.x;
+		this.spr.y = (y || 0) * size.y;
 
 		Interactive.interactives.push(this);
 		this.id = Interactive.interactives.length;
