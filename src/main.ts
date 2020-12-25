@@ -152,6 +152,7 @@ export function init() {
 	// start the main loop
 	Ticker.shared.add(main);
 	const bgm = Loader.shared.resources.bgm.data as Howl;
+	bgm.loop(true);
 	const bgmId = bgm.play();
 	bgm.fade(0, 1, 2000, bgmId);
 }

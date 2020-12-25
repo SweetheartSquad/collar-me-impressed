@@ -30,10 +30,7 @@ export async function load() {
 	await resourceLoad();
 
 	Loader.shared
-		.add('bgm', 'audio/bgm.mp3', {
-			loop: true,
-			volume: 0,
-		})
+		.add('bgm', 'audio/bgm.mp3')
 		.add('pickup', 'audio/pickup.mp3')
 		.add('drop', 'audio/drop.mp3')
 		.add('btn', 'audio/btn.mp3')
