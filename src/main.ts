@@ -67,11 +67,12 @@ export function init() {
 	const layers: Record<string, Layer> = Object.entries(config.layers).reduce((result, [key, layerConfig]) => {
 		const layer = new Layer(layerConfig);
 
-			layerConfig.data.items.forEach(sprite => {
-				const s = new Interactive(sprite);
-				layer.addChild(s.spr);
-				s.addListener('click', () => {
-					const d = new Draggable(sprite);
+		if (layerConfig.type === 'static') {
+			layerConfig.data.items.forEach(itemConfig => {
+				const item = new ItemStatic(itemConfig);
+				layer.addChild(item.spr);
+			});
+		} else if (layerConfig.type === 'drag-and-drop') {
 			layerConfig.data.items.forEach(itemConfig => {
 				const item = new Interactive(itemConfig);
 				layer.addChild(item.spr);

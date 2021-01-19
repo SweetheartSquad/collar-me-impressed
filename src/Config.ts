@@ -6,6 +6,14 @@ export interface ItemConfig {
 
 export type LayerConfig =
 	| {
+			type: 'static';
+			x?: number;
+			y?: number;
+			data: {
+				items: ItemConfig[];
+			};
+	}
+	| {
 			type: 'cycle';
 			x?: number;
 			y?: number;
