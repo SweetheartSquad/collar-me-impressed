@@ -1,6 +1,7 @@
 import HowlerMiddleware from 'howler-pixi-loader-middleware';
 import { Loader, SCALE_MODES, settings, WRAP_MODES } from 'pixi.js';
 import { Resizer } from '../src/Resizer';
+import { Config } from './Config';
 import './focusHack';
 import { size } from './size';
 
@@ -41,7 +42,7 @@ export async function load() {
 		.add('mouse_over', 'img/mouse/mouse_over.png')
 		.add('mouse_down', 'img/mouse/mouse_down.png');
 
-	Loader.shared.resources.config.data.sprites.forEach(i => Loader.shared.add(i.spr, 'img/' + i.spr + '.png'));
+	Object.values((Loader.shared.resources.config.data as Config).layers).flatMap(i => i.data.items).forEach(i => Loader.shared.add(i.spr, 'img/' + i.spr + '.png'));
 
 	Loader.shared.onProgress.add((Loader, resource) => {
 		loading.innerText = 'Loading: ' + Math.floor(Loader.progress) + '%';

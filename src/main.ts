@@ -1,5 +1,6 @@
 import { Howl } from 'howler';
 import { autoDetectRenderer, Container, Loader, Renderer, Sprite, Ticker } from 'pixi.js';
+import { Config, Layer } from './Config';
 import { Draggable } from './Draggable';
 import { mouse } from './input-mouse';
 import { Interactive } from './Interactive';
@@ -56,44 +57,46 @@ export function init() {
 
 	mouseSpr.up.anchor.x = mouseSpr.up.anchor.y = mouseSpr.down.anchor.x = mouseSpr.down.anchor.y = mouseSpr.over.anchor.x = mouseSpr.over.anchor.y = 0.5;
 
-	const config = Loader.shared.resources.config.data;
+	const config = Loader.shared.resources.config.data as Config;
 
 	// make layers
-	const layers: Record<string, Container> = config.types.reduce((result, type) => {
+	const layers: Record<string, Container & { config: Layer }> = Object.entries(config.layers).reduce((result, [key, layerConfig]) => {
 		const t = new Container();
-		t.x = (type.x || 0) * size.x;
-		t.y = (type.y || 0) * size.y;
-		result[type.label] = t;
-		t.config = type;
+		t.x = (layerConfig.x || 0) * size.x;
+		t.y = (layerConfig.y || 0) * size.y;
+		result[key] = t;
+		t.config = layerConfig;
 		stage.addChild(t);
 		return result;
 	}, {});
 
 	// fill out layers
-	config.sprites.forEach(sprite => {
-		const layer = layers[sprite.label];
-		if (layer.config.type === 'drag-and-drop') {
-			const s = new Interactive(sprite);
-			layer.addChild(s.spr);
-			s.addListener('click', () => {
-				const d = new Draggable(sprite);
-				layer.addChild(d.spr);
-				d.onClick();
-			});
-			btns.push(s);
-		} else {
-			const s = new Sprite(Loader.shared.resources[sprite.spr].texture);
-			s.x = sprite.x || 0;
-			s.y = sprite.y || 0;
-			s.anchor.x = s.anchor.y = 0.5;
-			layer.addChild(s);
-		}
+	Object.values(layers).forEach(layer => {
+		layer.config.data.items.forEach(sprite => {
+			if (layer.config.type === 'drag-and-drop') {
+				const s = new Interactive(sprite);
+				layer.addChild(s.spr);
+				s.addListener('click', () => {
+					const d = new Draggable(sprite);
+					layer.addChild(d.spr);
+					d.onClick();
+				});
+				btns.push(s);
+			} else {
+				const s = new Sprite(Loader.shared.resources[sprite.spr].texture);
+				s.x = sprite.x || 0;
+				s.y = sprite.y || 0;
+				s.anchor.x = s.anchor.y = 0.5;
+				layer.addChild(s);
+			}
+		});
 	});
 
 	// setup cycling layers
 	Object.values(layers)
 		.filter(layer => layer.config.type === 'cycle')
 		.forEach(layer => {
+			const layerConfig = layer.config as Layer & { type: 'cycle' };
 			layer.active = 0;
 			layer.children.forEach(i => {
 				i.visible = false;
@@ -102,13 +105,13 @@ export function init() {
 
 			const next = new Interactive({
 				spr: 'arrow',
-				x: layer.config.x + layer.config.arrowX + layer.config.arrowGap / 2,
-				y: layer.config.y + layer.config.arrowY,
+				x: layerConfig.x + layerConfig.data.arrowX + layerConfig.data.arrowGap / 2,
+				y: layerConfig.y + layerConfig.data.arrowY,
 			});
 			const prev = new Interactive({
 				spr: 'arrow_flipped',
-				x: layer.config.x + layer.config.arrowX - layer.config.arrowGap / 2,
-				y: layer.config.y + layer.config.arrowY,
+				x: layerConfig.x + layerConfig.data.arrowX - layerConfig.data.arrowGap / 2,
+				y: layerConfig.y + layerConfig.data.arrowY,
 			});
 			stage.addChild(next.spr);
 			stage.addChild(prev.spr);

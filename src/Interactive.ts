@@ -11,7 +11,7 @@ export class Interactive extends EventEmitter<'click' | 'release', never> {
 	selectAnim = -1;
 	id: number;
 	selected = false;
-	constructor({ spr, x, y }: { spr: string; x: number; y: number }) {
+	constructor({ spr, x, y }: { spr: string; x?: number; y?: number }) {
 		super();
 		const sprite = new Sprite(Texture.from(spr));
 		sprite.anchor.x = sprite.anchor.y = 0.5;
