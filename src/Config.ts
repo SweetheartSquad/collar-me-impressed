@@ -1,10 +1,10 @@
-export interface Item {
+export interface ItemConfig {
 	spr: string;
 	x?: number;
 	y?: number;
 }
 
-export type Layer =
+export type LayerConfig =
 	| {
 			type: 'cycle';
 			x?: number;
@@ -13,7 +13,7 @@ export type Layer =
 				arrowX: number;
 				arrowY: number;
 				arrowGap: number;
-				items: Item[];
+				items: ItemConfig[];
 			};
 	  }
 	| {
@@ -21,10 +21,10 @@ export type Layer =
 			x?: number;
 			y?: number;
 			data: {
-				items: Item[];
+				items: ItemConfig[];
 			};
 	  };
 
 export interface Config {
-	layers: Partial<Record<string, Layer>>;
+	layers: Partial<Record<string, LayerConfig>>;
 }

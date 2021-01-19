@@ -1,9 +1,10 @@
 import { Howl } from 'howler';
 import { autoDetectRenderer, Container, Loader, Renderer, Sprite, Ticker } from 'pixi.js';
-import { Config, Layer } from './Config';
+import { Config, LayerConfig } from './Config';
 import { Draggable } from './Draggable';
 import { mouse } from './input-mouse';
 import { Interactive } from './Interactive';
+import { Layer } from './Layer';
 import { resizer } from './loader';
 import { size } from './size';
 
@@ -60,13 +61,10 @@ export function init() {
 	const config = Loader.shared.resources.config.data as Config;
 
 	// make layers
-	const layers: Record<string, Container & { config: Layer }> = Object.entries(config.layers).reduce((result, [key, layerConfig]) => {
-		const t = new Container();
-		t.x = (layerConfig.x || 0) * size.x;
-		t.y = (layerConfig.y || 0) * size.y;
-		result[key] = t;
-		t.config = layerConfig;
-		stage.addChild(t);
+	const layers: Record<string, Layer> = Object.entries(config.layers).reduce((result, [key, layerConfig]) => {
+		const layer = new Layer(layerConfig);
+		result[key] = layer;
+		stage.addChild(layer);
 		return result;
 	}, {});
 
@@ -96,7 +94,7 @@ export function init() {
 	Object.values(layers)
 		.filter(layer => layer.config.type === 'cycle')
 		.forEach(layer => {
-			const layerConfig = layer.config as Layer & { type: 'cycle' };
+			const layerConfig = layer.config as LayerConfig & { type: 'cycle' };
 			layer.active = 0;
 			layer.children.forEach(i => {
 				i.visible = false;
