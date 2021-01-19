@@ -74,14 +74,20 @@ export function init() {
 			});
 		} else if (layerConfig.type === 'drag-and-drop') {
 			layerConfig.data.items.forEach(itemConfig => {
-				const item = new Interactive(itemConfig);
-				layer.addChild(item.spr);
-				item.addListener('click', () => {
-					const d = new ItemDraggable(itemConfig);
-					layer.addChild(d.spr);
-					d.onClick();
-				});
-				btns.push(item);
+				if (itemConfig.unique) {
+					const item = new ItemDraggable(itemConfig);
+					item.disposable = false;
+					layer.addChild(item.spr);
+				} else {
+					const item = new Interactive(itemConfig);
+					layer.addChild(item.spr);
+					item.addListener('click', () => {
+						const d = new ItemDraggable(itemConfig);
+						layer.addChild(d.spr);
+						d.onClick();
+					});
+					btns.push(item);
+				}
 			});
 		} else if (layerConfig.type === 'cycle') {
 			layerConfig.data.items.forEach(itemConfig => {

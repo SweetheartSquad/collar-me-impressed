@@ -1,6 +1,6 @@
-import { EventEmitter } from "eventemitter3";
+import { EventEmitter } from 'eventemitter3';
 import { Container, Sprite, Texture } from 'pixi.js';
-import { ItemConfig } from "./Config";
+import { ItemConfig } from './Config';
 import { mouse } from './input-mouse';
 import { size } from './size';
 import { lerp } from './utils';
@@ -12,6 +12,7 @@ export class Interactive extends EventEmitter<'click' | 'release', never> {
 	selectAnim = -1;
 	id: number;
 	selected = false;
+	disposable = true;
 	constructor({ spr, x, y }: ItemConfig) {
 		super();
 		const sprite = new Sprite(Texture.from(spr));
@@ -62,18 +63,18 @@ export class Interactive extends EventEmitter<'click' | 'release', never> {
 			const d = Interactive.interactives[i];
 			d.update(time);
 			if (d.spr.x < 0) {
-				d.v.x -= 1;
+				d.v.x -= d.disposable ? 1 : -1;
 			}
 			if (d.spr.x > size.x) {
-				d.v.x += 1;
+				d.v.x += d.disposable ? 1 : -1;
 			}
 			if (d.spr.y < 0) {
-				d.v.y -= 1;
+				d.v.y -= d.disposable ? 1 : -1;
 			}
 			if (d.spr.y > size.y) {
-				d.v.y += 1;
+				d.v.y += d.disposable ? 1 : -1;
 			}
-			if (d.spr.x < -size.x || d.spr.x > size.x * 2 || d.spr.y < -size.y || d.spr.y > size.y * 2) {
+			if (d.disposable && (d.spr.x < -size.x || d.spr.x > size.x * 2 || d.spr.y < -size.y || d.spr.y > size.y * 2)) {
 				d.spr.destroy();
 				this.interactives.splice(
 					this.interactives.findIndex(i => i === d),
@@ -102,9 +103,9 @@ export class Interactive extends EventEmitter<'click' | 'release', never> {
 	}
 
 	onClick() {
-		this.emit('click')
+		this.emit('click');
 	}
 	onRelease() {
-		this.emit('release')
+		this.emit('release');
 	}
 }

@@ -4,6 +4,10 @@ export interface ItemConfig {
 	y?: number;
 }
 
+export interface ItemDraggableConfig extends ItemConfig {
+	unique?: boolean;
+}
+
 export type LayerConfig =
 	| {
 			type: 'static';
@@ -12,7 +16,7 @@ export type LayerConfig =
 			data: {
 				items: ItemConfig[];
 			};
-	}
+	  }
 	| {
 			type: 'cycle';
 			x?: number;
@@ -29,7 +33,7 @@ export type LayerConfig =
 			x?: number;
 			y?: number;
 			data: {
-				items: ItemConfig[];
+				items: ItemDraggableConfig[];
 			};
 	  };
 

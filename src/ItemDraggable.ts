@@ -1,4 +1,5 @@
 import { Loader } from 'pixi.js';
+import { ItemDraggableConfig } from './Config';
 import { mouse } from './input-mouse';
 import { Interactive } from './Interactive';
 import { lerp } from './utils';
@@ -15,8 +16,8 @@ export class ItemDraggable extends Interactive {
 	static target: ItemDraggable = null;
 	static offset = { x: 0, y: 0 };
 
-	constructor(...args: ConstructorParameters<typeof Interactive>) {
-		super(...args);
+	constructor(config: ItemDraggableConfig) {
+		super(config);
 		this.addListener('click', () => {
 			Interactive.selected = this;
 			Interactive.interactives.splice(
