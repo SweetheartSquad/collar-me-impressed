@@ -2,16 +2,17 @@ import { Howl } from 'howler';
 import { autoDetectRenderer, Container, Loader, Renderer, Sprite, Ticker } from 'pixi.js';
 import { Button } from './Button';
 import { Config } from './Config';
-import { Draggable } from './Draggable';
 import { mouse } from './input-mouse';
 import { Interactive } from './Interactive';
+import { ItemDraggable } from './ItemDraggable';
+import { ItemStatic } from './ItemStatic';
 import { Layer } from './Layer';
 import { resizer } from './loader';
 import { size } from './size';
 
 export const stage = new Container();
 window.stage = stage;
-let mouseSpr: Draggable & {
+let mouseSpr: ItemDraggable & {
 	up: Sprite;
 	over: Sprite;
 	down: Sprite;
@@ -44,8 +45,8 @@ export function init() {
 		up: new Sprite(Loader.shared.resources.mouse_up.texture),
 		over: new Sprite(Loader.shared.resources.mouse_over.texture),
 		down: new Sprite(Loader.shared.resources.mouse_down.texture),
-		update: Draggable.prototype.update,
-		drag: Draggable.prototype.drag,
+		update: ItemDraggable.prototype.update,
+		drag: ItemDraggable.prototype.drag,
 		v: { x: 0, y: 0 },
 		angle: 0,
 		selectAnim: -1,
@@ -66,25 +67,26 @@ export function init() {
 	const layers: Record<string, Layer> = Object.entries(config.layers).reduce((result, [key, layerConfig]) => {
 		const layer = new Layer(layerConfig);
 
-		if (layerConfig.type === 'drag-and-drop') {
 			layerConfig.data.items.forEach(sprite => {
 				const s = new Interactive(sprite);
 				layer.addChild(s.spr);
 				s.addListener('click', () => {
 					const d = new Draggable(sprite);
+			layerConfig.data.items.forEach(itemConfig => {
+				const item = new Interactive(itemConfig);
+				layer.addChild(item.spr);
+				item.addListener('click', () => {
+					const d = new ItemDraggable(itemConfig);
 					layer.addChild(d.spr);
 					d.onClick();
 				});
-				btns.push(s);
+				btns.push(item);
 			});
 		} else if (layerConfig.type === 'cycle') {
-			layerConfig.data.items.forEach(sprite => {
-				const s = new Sprite(Loader.shared.resources[sprite.spr].texture);
-				s.x = sprite.x || 0;
-				s.y = sprite.y || 0;
-				s.anchor.x = s.anchor.y = 0.5;
-				s.visible = false;
-				layer.addChild(s);
+			layerConfig.data.items.forEach(itemConfig => {
+				const item = new ItemStatic(itemConfig);
+				item.spr.visible = false;
+				layer.addChild(item.spr);
 			});
 			layer.children[0].visible = true;
 	
@@ -152,7 +154,7 @@ function main() {
 
 function update() {
 	// game update
-	Draggable.updateAll(Ticker.shared.lastTime);
+	ItemDraggable.updateAll(Ticker.shared.lastTime);
 
 	mouseSpr.selected = false;
 	mouseSpr.up.visible = false;

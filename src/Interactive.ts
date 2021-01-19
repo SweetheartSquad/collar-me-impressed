@@ -1,5 +1,6 @@
 import { EventEmitter } from "eventemitter3";
 import { Container, Sprite, Texture } from 'pixi.js';
+import { ItemConfig } from "./Config";
 import { mouse } from './input-mouse';
 import { size } from './size';
 import { lerp } from './utils';
@@ -11,13 +12,13 @@ export class Interactive extends EventEmitter<'click' | 'release', never> {
 	selectAnim = -1;
 	id: number;
 	selected = false;
-	constructor({ spr, x, y }: { spr: string; x?: number; y?: number }) {
+	constructor({ spr, x, y }: ItemConfig) {
 		super();
 		const sprite = new Sprite(Texture.from(spr));
 		sprite.anchor.x = sprite.anchor.y = 0.5;
+		sprite.x = (x || 0) * size.x;
+		sprite.y = (y || 0) * size.y;
 		this.spr = sprite;
-		this.spr.x = (x || 0) * size.x;
-		this.spr.y = (y || 0) * size.y;
 
 		Interactive.interactives.push(this);
 		this.id = Interactive.interactives.length;
