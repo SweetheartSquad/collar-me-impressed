@@ -64,15 +64,9 @@ export function init() {
 	// make layers
 	const layers: Record<string, Layer> = Object.entries(config.layers).reduce((result, [key, layerConfig]) => {
 		const layer = new Layer(layerConfig);
-		result[key] = layer;
-		stage.addChild(layer);
-		return result;
-	}, {});
 
-	// fill out layers
-	Object.values(layers).forEach(layer => {
-		layer.config.data.items.forEach(sprite => {
-			if (layer.config.type === 'drag-and-drop') {
+		if (layerConfig.type === 'drag-and-drop') {
+			layerConfig.data.items.forEach(sprite => {
 				const s = new Interactive(sprite);
 				layer.addChild(s.spr);
 				s.addListener('click', () => {
@@ -81,26 +75,18 @@ export function init() {
 					d.onClick();
 				});
 				btns.push(s);
-			} else {
+			});
+		} else if (layerConfig.type === 'cycle') {
+			layerConfig.data.items.forEach(sprite => {
 				const s = new Sprite(Loader.shared.resources[sprite.spr].texture);
 				s.x = sprite.x || 0;
 				s.y = sprite.y || 0;
 				s.anchor.x = s.anchor.y = 0.5;
+				s.visible = false;
 				layer.addChild(s);
-			}
-		});
-	});
-
-	// setup cycling layers
-	Object.values(layers)
-		.forEach(layer => {
-			const layerConfig = layer.config;
-			if (layerConfig.type !== 'cycle') return;
-			layer.children.forEach(i => {
-				i.visible = false;
 			});
 			layer.children[0].visible = true;
-
+	
 			function onNext() {
 				layer.children[layer.active].visible = false;
 				layer.active += 1;
@@ -115,7 +101,7 @@ export function init() {
 				}
 				layer.children[layer.active].visible = true;
 			}
-
+	
 			const next = new Button(onNext, {
 				spr: 'arrow',
 				x: layerConfig.x + layerConfig.data.arrowX + layerConfig.data.arrowGap / 2,
@@ -129,7 +115,12 @@ export function init() {
 			stage.addChild(next.spr);
 			stage.addChild(prev.spr);
 			btns.push(next, prev);
-		});
+		}
+
+		result[key] = layer;
+		stage.addChild(layer);
+		return result;
+	}, {});
 
 	// save btn
 	const save = new Button(saveImage, {
