@@ -57,8 +57,8 @@ export class Interactive extends EventEmitter<'click' | 'release', never> {
 	static interactives: Interactive[] = [];
 
 	static updateAll(time: number) {
-		for (var i = Interactive.interactives.length - 1; i >= 0; --i) {
-			var d = Interactive.interactives[i];
+		for (let i = Interactive.interactives.length - 1; i >= 0; --i) {
+			const d = Interactive.interactives[i];
 			d.update(time);
 			if (d.spr.x < 0) {
 				d.v.x -= 1;

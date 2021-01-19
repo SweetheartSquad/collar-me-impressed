@@ -202,7 +202,7 @@ function saveImage() {
 	renderer.preserveDrawingBuffer = false;
 	const url = renderer.view.toDataURL();
 	btns.forEach(i => (i.spr.visible = true));
-	var a = document.createElement('a');
+	const a = document.createElement('a');
 	document.body.append(a);
 	a.download = 'my cat';
 	a.href = url;
