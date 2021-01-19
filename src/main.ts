@@ -60,6 +60,7 @@ export function init() {
 	mouseSpr.up.anchor.x = mouseSpr.up.anchor.y = mouseSpr.down.anchor.x = mouseSpr.down.anchor.y = mouseSpr.over.anchor.x = mouseSpr.over.anchor.y = 0.5;
 
 	const config = Loader.shared.resources.config.data as Config;
+	const ui = new Container();
 
 	// make layers
 	const layers: Record<string, Layer> = Object.entries(config.layers).reduce((result, [key, layerConfig]) => {
@@ -112,8 +113,8 @@ export function init() {
 				x: layerConfig.x + layerConfig.data.arrowX - layerConfig.data.arrowGap / 2,
 				y: layerConfig.y + layerConfig.data.arrowY,
 			});
-			stage.addChild(next.spr);
-			stage.addChild(prev.spr);
+			ui.addChild(next.spr);
+			ui.addChild(prev.spr);
 			btns.push(next, prev);
 		}
 
@@ -131,7 +132,8 @@ export function init() {
 	save.spr.anchor.x = save.spr.anchor.y = 1.0;
 	btns.push(save);
 
-	stage.addChild(save.spr);
+	ui.addChild(save.spr);
+	stage.addChild(ui);
 
 	stage.addChild(mouseSpr.spr);
 
