@@ -74,11 +74,11 @@ export function init() {
 		if (layer.config.type === 'drag-and-drop') {
 			const s = new Interactive(sprite);
 			layer.addChild(s.spr);
-			s.onClick = () => {
+			s.addListener('click', () => {
 				const d = new Draggable(sprite);
 				layer.addChild(d.spr);
 				d.onClick();
-			};
+			});
 			btns.push(s);
 		} else {
 			const s = new Sprite(Loader.shared.resources[sprite.spr].texture);
@@ -111,15 +111,15 @@ export function init() {
 			});
 			stage.addChild(next.spr);
 			stage.addChild(prev.spr);
-			next.onClick = () => {
+			next.addListener('click', () => {
 				Loader.shared.resources.btn.data.play();
 				next.selectAnim = 1.0;
 				layer.children[layer.active].visible = false;
 				layer.active += 1;
 				layer.active %= layer.children.length;
 				layer.children[layer.active].visible = true;
-			};
-			prev.onClick = () => {
+			});
+			prev.addListener('click', () => {
 				Loader.shared.resources.btn.data.play();
 				prev.selectAnim = 1.0;
 				layer.children[layer.active].visible = false;
@@ -128,7 +128,7 @@ export function init() {
 					layer.active += layer.children.length;
 				}
 				layer.children[layer.active].visible = true;
-			};
+			});
 			btns.push(next, prev);
 		});
 
@@ -139,11 +139,11 @@ export function init() {
 		y: 0.95,
 	});
 	save.spr.anchor.x = save.spr.anchor.y = 1.0;
-	save.onClick = () => {
+	save.addListener('click', () => {
 		Loader.shared.resources.btn.data.play();
 		save.selectAnim = 1.0;
 		saveImage();
-	};
+	});
 	btns.push(save);
 
 	stage.addChild(save.spr);
