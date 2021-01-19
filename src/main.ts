@@ -1,6 +1,6 @@
 import { Howl } from 'howler';
 import { autoDetectRenderer, Container, Loader, Renderer, Sprite, Ticker } from 'pixi.js';
-import { Config, LayerConfig } from './Config';
+import { Config } from './Config';
 import { Draggable } from './Draggable';
 import { mouse } from './input-mouse';
 import { Interactive } from './Interactive';
@@ -92,10 +92,9 @@ export function init() {
 
 	// setup cycling layers
 	Object.values(layers)
-		.filter(layer => layer.config.type === 'cycle')
 		.forEach(layer => {
-			const layerConfig = layer.config as LayerConfig & { type: 'cycle' };
-			layer.active = 0;
+			const layerConfig = layer.config;
+			if (layerConfig.type !== 'cycle') return;
 			layer.children.forEach(i => {
 				i.visible = false;
 			});

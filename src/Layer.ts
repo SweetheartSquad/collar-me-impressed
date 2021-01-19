@@ -3,6 +3,7 @@ import { LayerConfig } from "./Config";
 import { size } from "./size";
 
 export class Layer extends Container {
+	active = 0;
 	constructor(public config: LayerConfig) {
 		super();
 		this.x = (config.x || 0) * size.x;
