@@ -20,10 +20,10 @@ export class Draggable extends Interactive {
 		this.addListener('click', () => {
 			Interactive.selected = this;
 			Interactive.interactives.splice(
-				Interactive.interactives.findIndex(i => i === Interactive.target),
+				Interactive.interactives.findIndex(i => i === this),
 				1
 			);
-			Interactive.interactives.unshift(Interactive.target);
+			Interactive.interactives.unshift(this);
 			Interactive.selected.spr.parent.addChildAt(Interactive.selected.spr, Interactive.selected.spr.parent.children.length);
 			Draggable.offset.x = mouse.pos.x - Interactive.selected.spr.x;
 			Draggable.offset.y = mouse.pos.y - Interactive.selected.spr.y;
