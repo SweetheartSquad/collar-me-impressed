@@ -6,7 +6,8 @@ import { lerp } from './utils';
 
 export class Interactive extends EventEmitter<'click' | 'release', never> {
 	spr: Container;
-	v = { x: 0, y: 0, a: 0 };
+	v = { x: 0, y: 0 };
+	angle = 0;
 	selectAnim = -1;
 	id: number;
 	selected = false;
@@ -25,16 +26,14 @@ export class Interactive extends EventEmitter<'click' | 'release', never> {
 	update(time: number) {
 		this.spr.x += this.v.x;
 		this.spr.y += this.v.y;
-		this.spr.angle += this.v.a;
+		this.spr.angle = lerp(this.spr.angle, this.angle, 0.1);
 
 		if (this.selected) {
 			this.v.x = lerp(this.v.x, 0, 0.5);
 			this.v.y = lerp(this.v.y, 0, 0.5);
-			this.v.a = lerp(this.v.a, 0, 0.5);
 		} else {
 			this.v.x = lerp(this.v.x, 0, 0.1);
 			this.v.y = lerp(this.v.y, 0, 0.1);
-			this.v.a = lerp(this.v.a, 0, 0.1);
 		}
 
 		this.spr.scale.x = lerp(this.spr.scale.x, 1 + Math.sin(time / 50 + this.id) * 0.3 * (1 - Math.abs(this.selectAnim)), 0.5);

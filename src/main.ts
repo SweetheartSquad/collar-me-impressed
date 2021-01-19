@@ -184,7 +184,7 @@ function update() {
 
 	mouseSpr.v.x = mouse.pos.x - mouseSpr.spr.x;
 	mouseSpr.v.y = mouse.pos.y - mouseSpr.spr.y;
-	mouseSpr.v.a = 0;
+	mouseSpr.angle = 0;
 
 	mouseSpr.update(Ticker.shared.lastTime);
 
