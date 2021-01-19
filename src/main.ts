@@ -135,9 +135,10 @@ export function init() {
 	// save btn
 	const save = new Interactive({
 		spr: 'save',
-		x: 0.9,
-		y: 0.9,
+		x: 0.95,
+		y: 0.95,
 	});
+	save.spr.anchor.x = save.spr.anchor.y = 1.0;
 	save.onClick = () => {
 		Loader.shared.resources.btn.data.play();
 		save.selectAnim = 1.0;
