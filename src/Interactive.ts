@@ -47,12 +47,8 @@ export class Interactive {
 	}
 
 	underMouse() {
-		return (
-			mouse.pos.x > this.spr.x - this.spr.width * this.spr.anchor.x &&
-			mouse.pos.x < this.spr.x + this.spr.width * this.spr.anchor.x &&
-			mouse.pos.y > this.spr.y - this.spr.height * this.spr.anchor.y &&
-			mouse.pos.y < this.spr.y + this.spr.height * this.spr.anchor.y
-		);
+		const bounds = this.spr.getBounds(true);
+		return bounds.contains(mouse.pos.x, mouse.pos.y);
 	}
 
 	static selected: Interactive = null;
