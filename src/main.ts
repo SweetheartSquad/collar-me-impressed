@@ -1,5 +1,6 @@
 import { Howl } from 'howler';
 import { autoDetectRenderer, Container, Loader, Renderer, Sprite, Ticker } from 'pixi.js';
+import { Button } from './Button';
 import { Config } from './Config';
 import { Draggable } from './Draggable';
 import { mouse } from './input-mouse';
@@ -100,51 +101,43 @@ export function init() {
 			});
 			layer.children[0].visible = true;
 
-			const next = new Interactive({
-				spr: 'arrow',
-				x: layerConfig.x + layerConfig.data.arrowX + layerConfig.data.arrowGap / 2,
-				y: layerConfig.y + layerConfig.data.arrowY,
-			});
-			const prev = new Interactive({
-				spr: 'arrow_flipped',
-				x: layerConfig.x + layerConfig.data.arrowX - layerConfig.data.arrowGap / 2,
-				y: layerConfig.y + layerConfig.data.arrowY,
-			});
-			stage.addChild(next.spr);
-			stage.addChild(prev.spr);
-			next.addListener('click', () => {
-				Loader.shared.resources.btn.data.play();
-				next.selectAnim = 1.0;
+			function onNext() {
 				layer.children[layer.active].visible = false;
 				layer.active += 1;
 				layer.active %= layer.children.length;
 				layer.children[layer.active].visible = true;
-			});
-			prev.addListener('click', () => {
-				Loader.shared.resources.btn.data.play();
-				prev.selectAnim = 1.0;
+			}
+			function onPrev() {
 				layer.children[layer.active].visible = false;
 				layer.active -= 1;
 				if (layer.active < 0) {
 					layer.active += layer.children.length;
 				}
 				layer.children[layer.active].visible = true;
+			}
+
+			const next = new Button(onNext, {
+				spr: 'arrow',
+				x: layerConfig.x + layerConfig.data.arrowX + layerConfig.data.arrowGap / 2,
+				y: layerConfig.y + layerConfig.data.arrowY,
 			});
+			const prev = new Button(onPrev, {
+				spr: 'arrow_flipped',
+				x: layerConfig.x + layerConfig.data.arrowX - layerConfig.data.arrowGap / 2,
+				y: layerConfig.y + layerConfig.data.arrowY,
+			});
+			stage.addChild(next.spr);
+			stage.addChild(prev.spr);
 			btns.push(next, prev);
 		});
 
 	// save btn
-	const save = new Interactive({
+	const save = new Button(saveImage, {
 		spr: 'save',
 		x: 0.95,
 		y: 0.95,
 	});
 	save.spr.anchor.x = save.spr.anchor.y = 1.0;
-	save.addListener('click', () => {
-		Loader.shared.resources.btn.data.play();
-		save.selectAnim = 1.0;
-		saveImage();
-	});
 	btns.push(save);
 
 	stage.addChild(save.spr);
