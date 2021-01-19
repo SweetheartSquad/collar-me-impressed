@@ -1,16 +1,18 @@
-import { Container, Loader, Sprite } from 'pixi.js';
+import { EventEmitter } from "eventemitter3";
+import { Container, Sprite, Texture } from 'pixi.js';
 import { mouse } from './input-mouse';
 import { size } from './size';
 import { lerp } from './utils';
 
-export class Interactive {
+export class Interactive extends EventEmitter<'click' | 'release', never> {
 	spr: Container;
 	v = { x: 0, y: 0, a: 0 };
 	selectAnim = -1;
 	id: number;
 	selected = false;
 	constructor({ spr, x, y }: { spr: string; x: number; y: number }) {
-		const sprite = new Sprite(Loader.shared.resources[spr].texture);
+		super();
+		const sprite = new Sprite(Texture.from(spr));
 		sprite.anchor.x = sprite.anchor.y = 0.5;
 		this.spr = sprite;
 		this.spr.x = (x || 0) * size.x;
@@ -99,6 +101,10 @@ export class Interactive {
 		}
 	}
 
-	onClick() {}
-	onRelease() {}
+	onClick() {
+		this.emit('click')
+	}
+	onRelease() {
+		this.emit('release')
+	}
 }

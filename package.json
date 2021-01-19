@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
+    "eventemitter3": "^4.0.7",
     "howler": "^2.2.1",
     "howler-pixi-loader-middleware": "^1.0.2",
     "jquery": "^3.5.1",
