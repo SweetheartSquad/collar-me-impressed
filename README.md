@@ -34,6 +34,8 @@ Source assets are placed in `/assets`, and include:
 - `/img/save.png`: texture for save button
 - `/img/*.png`: any other textures referenced in `config.json`
 
+Note that the center of the mouse images are used as the pointer; you can include transparent padding on the top-left to offset this for a more traditional pointer.
+
 ### `config.json`
 
 ```jsonc
