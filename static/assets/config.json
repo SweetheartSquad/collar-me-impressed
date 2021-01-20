@@ -3,7 +3,7 @@
 		"x": 720,
 		"y": 480
 	},
-	"scaleMode": "cover",
+	"scaleMode": "fit",
 	"layers": {
 		"bg": {
 			"type": "cycle",
