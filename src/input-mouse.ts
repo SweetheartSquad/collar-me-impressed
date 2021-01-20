@@ -46,16 +46,18 @@ export const mouse = {
 		this.delta.y = 0;
 	},
 
-	onDown: function () {
+	onDown: function (event) {
 		if (this.down !== true) {
 			this.down = true;
 			this.justDown = true;
 		}
+		this.onMove(event);
 	},
-	onUp: function () {
+	onUp: function (event) {
 		this.down = false;
 		this.justDown = false;
 		this.justUp = true;
+		this.onMove(event);
 	},
 	onMove: function (event) {
 		// get new position
