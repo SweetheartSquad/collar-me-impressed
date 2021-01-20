@@ -63,11 +63,13 @@ Note that the center of the mouse images are used as the pointer; you can includ
 			"y": 0.5,
 			"data": {
 				"ui": false,
-				"items": [{
-					"spr": "texture-name",
-					"x": 0,
-					"y": 0
-				}]
+				"items": [
+					{
+						"spr": "texture-name",
+						"x": 0,
+						"y": 0
+					}
+				]
 			}
 		},
 		"animated-example": {
@@ -81,11 +83,13 @@ Note that the center of the mouse images are used as the pointer; you can includ
 			"data": {
 				"ui": false,
 				"speed": 1,
-				"items": [{
-					"spr": "texture-name"
-				}, {
-					"spr": "texture-name"
-				}]
+				"items": [
+					{
+						"spr": "texture-name"
+					}, {
+						"spr": "texture-name"
+					}
+				]
 			}
 		},
 		"cycle-example": {
@@ -98,11 +102,13 @@ Note that the center of the mouse images are used as the pointer; you can includ
 				"arrowX": 0,
 				"arrowY": 0,
 				"arrowGap": 0.5,
-				"items": [{
-					"spr": "texture-name"
-				}, {
-					"spr": "texture-name"
-				}]
+				"items": [
+					{
+						"spr": "texture-name"
+					}, {
+						"spr": "texture-name"
+					}
+				]
 			}
 		},
 		"drag-example": {
@@ -115,16 +121,18 @@ Note that the center of the mouse images are used as the pointer; you can includ
 				"arrowX": 0.1,
 				"arrowY": 0.2,
 				"arrowGap": 0.5,
-				"items": [{
-					"spr": "texture-name",
-					"x": 0.1,
-					"y": 0.0
-				}, {
-					"spr": "texture-name",
-					"x": 0.2,
-					"y": 0.0,
-					"unique": true
-				}]
+				"items": [
+					{
+						"spr": "texture-name",
+						"x": 0.1,
+						"y": 0.0
+					}, {
+						"spr": "texture-name",
+						"x": 0.2,
+						"y": 0.0,
+						"unique": true
+					}
+				]
 			}
 		},
 		"filter-example": {
@@ -138,16 +146,18 @@ Note that the center of the mouse images are used as the pointer; you can includ
 				"arrowX": 0,
 				"arrowY": 0,
 				"arrowGap": 0.5,
-				"filters": [{
-					"fragment": "shader-name"
-				}, {
-					"fragment": "shader-name",
-					"uniforms": {
-						"uniform": 1,
+				"filters": [
+					{
+						"fragment": "shader-name"
+					}, {
+						"fragment": "shader-name",
+						"uniforms": {
+							"uniform": 1
+						}
 					}
-				}]
+				]
 			}
-		},
+		}
 	}
 }
 ```
