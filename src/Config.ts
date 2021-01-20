@@ -19,12 +19,14 @@ export type LayerConfig = {
 	| {
 			type: 'static';
 			data: {
+				ui?: boolean;
 				items: ItemConfig[];
 			};
 	  }
 	| {
 			type: 'animated';
 			data: {
+				ui?: boolean;
 				speed?: number;
 				items: ItemConfig[];
 			};

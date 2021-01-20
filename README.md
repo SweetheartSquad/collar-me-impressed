@@ -57,10 +57,12 @@ Note that the center of the mouse images are used as the pointer; you can includ
 			// static layers will simply render all items,
 			// and offer no interaction
 			// these can be used to create persistent decorative elements
+			// if `ui` is set to `true`, this layer will be hidden when saved
 			"type": "static",
 			"x": 0.5,
 			"y": 0.5,
 			"data": {
+				"ui": false,
 				"items": [{
 					"spr": "texture-name",
 					"x": 0,
@@ -72,10 +74,12 @@ Note that the center of the mouse images are used as the pointer; you can includ
 			// animated layers will automatically loop through each item as a frame of animation
 			// and offer no interaction
 			// these can be used to create persistent decorative elements
+			// if `ui` is set to `true`, this layer will be hidden when saved
 			"type": "static",
 			"x": 0.5,
 			"y": 0.5,
 			"data": {
+				"ui": false,
 				"speed": 1,
 				"items": [{
 					"spr": "texture-name"

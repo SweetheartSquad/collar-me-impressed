@@ -1,5 +1,5 @@
 import { Howl } from 'howler';
-import { autoDetectRenderer, Container, Filter, Loader, Renderer, Sprite, Ticker } from 'pixi.js';
+import { autoDetectRenderer, Container, DisplayObject, Filter, Loader, Renderer, Sprite, Ticker } from 'pixi.js';
 import { Button } from './Button';
 import { Config } from './Config';
 import { mouse } from './input-mouse';
@@ -20,7 +20,7 @@ let mouseSpr: ItemDraggable & {
 	selectAnim: number;
 };
 let renderer: Renderer;
-const btns: Interactive[] = [];
+const hideOnSave: DisplayObject[] = [];
 
 function setFilter(index, fragment: string, uniforms: any) {
 	const filter = new Filter(undefined, Loader.shared.resources[fragment].data, uniforms);
@@ -75,6 +75,7 @@ export function init() {
 	mouseSpr.spr.addChild(mouseSpr.up);
 	mouseSpr.spr.addChild(mouseSpr.over);
 	mouseSpr.spr.addChild(mouseSpr.down);
+	hideOnSave.push(mouseSpr.spr);
 
 	mouseSpr.up.anchor.x = mouseSpr.up.anchor.y = mouseSpr.down.anchor.x = mouseSpr.down.anchor.y = mouseSpr.over.anchor.x = mouseSpr.over.anchor.y = 0.5;
 
@@ -90,12 +91,18 @@ export function init() {
 				const item = new ItemStatic(itemConfig);
 				layer.addChild(item.spr);
 			});
+			if (layerConfig.data.ui) {
+				hideOnSave.push(layer);
+			}
 		} else if (layerConfig.type === 'animated') {
 			const item = new ItemAnimated(
 				layerConfig.data.items.map(i => i.spr),
 				layerConfig.data.speed
 			);
 			layer.addChild(item.spr);
+			if (layerConfig.data.ui) {
+				hideOnSave.push(layer);
+			}
 		} else if (layerConfig.type === 'drag-and-drop') {
 			layerConfig.data.items.forEach(itemConfig => {
 				if (itemConfig.unique) {
@@ -110,7 +117,7 @@ export function init() {
 						layer.addChild(d.spr);
 						d.onClick();
 					});
-					btns.push(item);
+					hideOnSave.push(item.spr);
 				}
 			});
 		} else if (layerConfig.type === 'cycle') {
@@ -148,7 +155,7 @@ export function init() {
 			});
 			ui.addChild(next.spr);
 			ui.addChild(prev.spr);
-			btns.push(next, prev);
+			hideOnSave.push(next.spr, prev.spr);
 		} else if (layerConfig.type === 'filter') {
 			const idx = stage.filters.length;
 			stage.filters.push(null);
@@ -179,7 +186,7 @@ export function init() {
 			});
 			ui.addChild(next.spr);
 			ui.addChild(prev.spr);
-			btns.push(next, prev);
+			hideOnSave.push(next.spr, prev.spr);
 		}
 
 		result[key] = layer;
@@ -194,7 +201,7 @@ export function init() {
 		y: 0.95,
 	});
 	save.spr.anchor.x = save.spr.anchor.y = 1.0;
-	btns.push(save);
+	hideOnSave.push(save.spr);
 
 	ui.addChild(save.spr);
 	stage.addChild(ui);
@@ -255,14 +262,16 @@ function render() {
 }
 
 function saveImage() {
-	btns.forEach(i => (i.spr.visible = false));
-	mouseSpr.spr.visible = false;
+	hideOnSave.forEach(i => {
+		i.visible = false;
+	});
 	renderer.preserveDrawingBuffer = true;
 	render();
-	mouseSpr.spr.visible = true;
 	renderer.preserveDrawingBuffer = false;
+	hideOnSave.forEach(i => {
+		i.visible = true;
+	});
 	const url = renderer.view.toDataURL();
-	btns.forEach(i => (i.spr.visible = true));
 	const a = document.createElement('a');
 	document.body.append(a);
 	a.download = 'my cat';
