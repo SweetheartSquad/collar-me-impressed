@@ -24,10 +24,10 @@ export const mouse = {
 
 	init: function (element: HTMLElement) {
 		this.element = element;
-		this.element.addEventListener('mouseup', mouse.onUp.bind(mouse));
-		this.element.addEventListener('mouseout', mouse.onUp.bind(mouse));
-		this.element.addEventListener('mousedown', mouse.onDown.bind(mouse));
-		this.element.addEventListener('mousemove', mouse.onMove.bind(mouse));
+		this.element.addEventListener('pointerup', mouse.onUp.bind(mouse));
+		this.element.addEventListener('pointerout', mouse.onUp.bind(mouse));
+		this.element.addEventListener('pointerdown', mouse.onDown.bind(mouse));
+		this.element.addEventListener('pointermove', mouse.onMove.bind(mouse));
 		this.element.addEventListener('wheel', mouse.onWheel.bind(mouse));
 		this.element.addEventListener("DOMMouseScroll", mouse.onWheel.bind(mouse));
 	},
