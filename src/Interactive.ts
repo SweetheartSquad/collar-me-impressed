@@ -1,5 +1,5 @@
 import { EventEmitter } from 'eventemitter3';
-import { Container, Sprite, Texture } from 'pixi.js';
+import { Container, Loader, Sprite } from 'pixi.js';
 import { ItemConfig } from './Config';
 import { mouse } from './input-mouse';
 import { size } from './size';
@@ -15,7 +15,7 @@ export class Interactive extends EventEmitter<'click' | 'release', never> {
 	disposable = true;
 	constructor({ spr, x, y }: ItemConfig) {
 		super();
-		const sprite = new Sprite(Texture.from(spr));
+		const sprite = new Sprite(Loader.shared.resources[spr].texture);
 		sprite.anchor.x = sprite.anchor.y = 0.5;
 		sprite.x = (x || 0) * size.x;
 		sprite.y = (y || 0) * size.y;
