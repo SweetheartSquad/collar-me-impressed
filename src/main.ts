@@ -48,6 +48,15 @@ export function init() {
 	// initialize input managers
 	mouse.init(renderer.view);
 
+	// save on ctrl+s
+	document.addEventListener('keydown', function (event) {
+		if (event.key === 's' && (event.ctrlKey || event.metaKey)) {
+			saveImage();
+			event.preventDefault();
+			event.stopPropagation();
+		}
+	});
+
 	mouseSpr = {
 		spr: new Container(),
 		up: new Sprite(Loader.shared.resources.mouse_up.texture),
