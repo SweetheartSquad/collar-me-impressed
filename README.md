@@ -20,7 +20,7 @@ npm run build
 
 ## Data format
 
-Source assets are placed in `/static`, and include:
+Source assets are placed in `/assets`, and include:
 
 - `/audio/bgm.mp3`: looping background music
 - `/audio/btn.mp3`: sound effect played when buttons are pressed

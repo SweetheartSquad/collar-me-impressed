@@ -26,6 +26,7 @@ export async function load() {
 	loading.innerText = 'Loading...';
 	document.body.appendChild(loading);
 	document.body.appendChild(resizer.element);
+	Loader.shared.baseUrl = 'assets';
 	Loader.shared.pre(HowlerMiddleware);
 	Loader.shared.add('config', 'config.json');
 	await resourceLoad();
