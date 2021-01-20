@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/SweetheartSquad/collar-me-impressed/compare/v1.1.1...v1.2.0) (2021-01-20)
+
+
+### Features
+
+* add `ui` option to static/animated layers ([a0eab06](https://github.com/SweetheartSquad/collar-me-impressed/commit/a0eab0605b99a52346266d509d622b2201022dd7))
+
 ## [1.1.1](https://github.com/SweetheartSquad/collar-me-impressed/compare/v1.1.0...v1.1.1) (2021-01-20)
 
 
