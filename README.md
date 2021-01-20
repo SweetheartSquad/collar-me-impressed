@@ -33,6 +33,7 @@ Source assets are placed in `/assets`, and include:
 - `/img/arrow_flipped.png`: texture for cycle layer "previous" arrow
 - `/img/save.png`: texture for save button
 - `/img/*.png`: any other textures referenced in `config.json`
+- `/filters/*.glsl`: any fragment shaders referenced in `config.json`
 
 Note that the center of the mouse images are used as the pointer; you can include transparent padding on the top-left to offset this for a more traditional pointer.
 
@@ -121,7 +122,50 @@ Note that the center of the mouse images are used as the pointer; you can includ
 					"unique": true
 				}]
 			}
-		}
+		},
+		"filter-example": {
+			// filter layers are an advanced variation of cycle layers,
+			// that apply a filter using the provided fragment shader and uniforms
+			// see the filter documentation below for shader details
+			"type": "filter",
+			"x": 0.5,
+			"y": 0.5,
+			"data": {
+				"arrowX": 0,
+				"arrowY": 0,
+				"arrowGap": 0.5,
+				"filters": [{
+					"fragment": "shader-name"
+				}, {
+					"fragment": "shader-name",
+					"uniforms": {
+						"uniform": 1,
+					}
+				}]
+			}
+		},
 	}
 }
 ```
+
+### Filters
+
+Boilerplate for a fragment shader:
+
+```glsl
+varying vec2 vTextureCoord;
+uniform sampler2D uSampler;
+uniform float time;
+uniform vec2 mouse;
+
+void main(void){
+	vec2 uvs = vTextureCoord.xy;
+	vec4 rgba = texture2D(uSampler, uvs);
+	gl_FragColor = rgba;
+}
+```
+
+- `vTextureCoord`: the screen texture uvs, automatically provided by Pixi
+- `uSampler`: the screen texture sampler, automatically provided by Pixi
+- `time`: the time in milliseconds since the start of the game, automatically provided by the project
+- `mouse`: the mouse position (top-left -> bottom-right : 0,0 -> 1,1), automatically provided by the project

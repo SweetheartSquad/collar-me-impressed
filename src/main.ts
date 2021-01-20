@@ -1,5 +1,5 @@
 import { Howl } from 'howler';
-import { autoDetectRenderer, Container, Loader, Renderer, Sprite, Ticker } from 'pixi.js';
+import { autoDetectRenderer, Container, Filter, Loader, Renderer, Sprite, Ticker } from 'pixi.js';
 import { Button } from './Button';
 import { Config } from './Config';
 import { mouse } from './input-mouse';
@@ -12,6 +12,7 @@ import { resizer } from './loader';
 import { size } from './size';
 
 export const stage = new Container();
+stage.filters = [];
 let mouseSpr: ItemDraggable & {
 	up: Sprite;
 	over: Sprite;
@@ -20,6 +21,13 @@ let mouseSpr: ItemDraggable & {
 };
 let renderer: Renderer;
 const btns: Interactive[] = [];
+
+function setFilter(index, fragment: string, uniforms: any) {
+	const filter = new Filter(undefined, Loader.shared.resources[fragment].data, uniforms);
+	filter.padding = 0;
+	stage.filters.splice(index, 1, filter);
+}
+
 export function init() {
 	// create window.renderer
 	renderer = autoDetectRenderer({
@@ -74,7 +82,10 @@ export function init() {
 				layer.addChild(item.spr);
 			});
 		} else if (layerConfig.type === 'animated') {
-			const item = new ItemAnimated(layerConfig.data.items.map(i => i.spr), layerConfig.data.speed);
+			const item = new ItemAnimated(
+				layerConfig.data.items.map(i => i.spr),
+				layerConfig.data.speed
+			);
 			layer.addChild(item.spr);
 		} else if (layerConfig.type === 'drag-and-drop') {
 			layerConfig.data.items.forEach(itemConfig => {
@@ -100,7 +111,7 @@ export function init() {
 				layer.addChild(item.spr);
 			});
 			layer.children[0].visible = true;
-	
+
 			function onNext() {
 				layer.children[layer.active].visible = false;
 				layer.active += 1;
@@ -115,7 +126,38 @@ export function init() {
 				}
 				layer.children[layer.active].visible = true;
 			}
-	
+
+			const next = new Button(onNext, {
+				spr: 'arrow',
+				x: layerConfig.x + layerConfig.data.arrowX + layerConfig.data.arrowGap / 2,
+				y: layerConfig.y + layerConfig.data.arrowY,
+			});
+			const prev = new Button(onPrev, {
+				spr: 'arrow_flipped',
+				x: layerConfig.x + layerConfig.data.arrowX - layerConfig.data.arrowGap / 2,
+				y: layerConfig.y + layerConfig.data.arrowY,
+			});
+			ui.addChild(next.spr);
+			ui.addChild(prev.spr);
+			btns.push(next, prev);
+		} else if (layerConfig.type === 'filter') {
+			const idx = stage.filters.length;
+			stage.filters.push(null);
+			const filters = layerConfig.data.shaders;
+			function onNext() {
+				layer.active += 1;
+				layer.active %= filters.length;
+				setFilter(idx, filters[layer.active].fragment, filters[layer.active].uniforms);
+			}
+			function onPrev() {
+				layer.active -= 1;
+				if (layer.active < 0) {
+					layer.active += filters.length;
+				}
+				setFilter(idx, filters[layer.active].fragment, filters[layer.active].uniforms);
+			}
+			setFilter(idx, filters[0].fragment, filters[0].uniforms);
+
 			const next = new Button(onNext, {
 				spr: 'arrow',
 				x: layerConfig.x + layerConfig.data.arrowX + layerConfig.data.arrowGap / 2,
@@ -193,6 +235,10 @@ function update() {
 
 	// update input managers
 	mouse.update();
+	stage.filters.forEach(filter => {
+		filter.uniforms.time = Ticker.shared.lastTime;
+		filter.uniforms.mouse = [mouse.pos.x / size.x, mouse.pos.y / size.y];
+	});
 }
 
 function render() {

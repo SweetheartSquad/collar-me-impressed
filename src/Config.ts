@@ -1,4 +1,4 @@
-import { ScaleModes } from "./Resizer/Resizer";
+import { ScaleModes } from './Resizer/Resizer';
 
 export interface ItemConfig {
 	spr: string;
@@ -42,6 +42,19 @@ export type LayerConfig = {
 			type: 'drag-and-drop';
 			data: {
 				items: ItemDraggableConfig[];
+			};
+	  }
+	| {
+			type: 'filter';
+			data: {
+				arrowX: number;
+				arrowY: number;
+				arrowGap: number;
+				shaders: {
+					fragment: string;
+					uniforms?: {};
+				}[];
+				items: never[];
 			};
 	  }
 );

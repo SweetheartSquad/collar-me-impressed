@@ -1,7 +1,7 @@
 import HowlerMiddleware from 'howler-pixi-loader-middleware';
 import { Loader, SCALE_MODES, settings, WRAP_MODES } from 'pixi.js';
 import { Resizer } from '../src/Resizer';
-import { Config } from './Config';
+import { Config, LayerConfig } from './Config';
 import './focusHack';
 
 // pixi config
@@ -43,7 +43,14 @@ export async function load() {
 		.add('mouse_down', 'img/mouse/mouse_down.png');
 
 	const config = Loader.shared.resources.config.data as Config;
-	Object.values(config.layers).flatMap(i => i.data.items).forEach(i => Loader.shared.add(i.spr, 'img/' + i.spr + '.png'));
+	new Set(
+		Object.values(config.layers)
+			.flatMap(i => i.data.items || [])
+			.map(i => i.spr)
+	).forEach(i => Loader.shared.add(i, 'img/' + i + '.png'));
+	new Set((Object.values(config.layers).filter(i => i.type === 'filter') as (LayerConfig & { type: 'filter' })[]).flatMap(i => i.data.shaders || []).map(i => i.fragment)).forEach(i =>
+		Loader.shared.add(i, 'filters/' + i + '.glsl')
+	);
 
 	Loader.shared.onProgress.add((Loader, resource) => {
 		loading.innerText = 'Loading: ' + Math.floor(Loader.progress) + '%';
