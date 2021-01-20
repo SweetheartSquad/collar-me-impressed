@@ -1,3 +1,11 @@
+## [1.1.1](https://github.com/SweetheartSquad/collar-me-impressed/compare/v1.1.0...v1.1.1) (2021-01-20)
+
+
+### Bug Fixes
+
+* move on mouse down/up ([47b1bc2](https://github.com/SweetheartSquad/collar-me-impressed/commit/47b1bc2d96da15c6c3eb4046d996277275e2baf8))
+* use `pointer` instead of `mouse` events ([37bd378](https://github.com/SweetheartSquad/collar-me-impressed/commit/37bd378658d1c41171824d04693d1a0145b44811))
+
 # [1.1.0](https://github.com/SweetheartSquad/collar-me-impressed/compare/v1.0.2...v1.1.0) (2021-01-20)
 
 
