@@ -1,12 +1,12 @@
 import { EventEmitter } from 'eventemitter3';
-import { Container, Loader, Sprite } from 'pixi.js';
+import { Loader, Sprite } from 'pixi.js';
 import { ItemConfig } from './Config';
 import { mouse } from './input-mouse';
 import { size } from './size';
 import { lerp } from './utils';
 
 export class Interactive extends EventEmitter<'click' | 'release', never> {
-	spr: Container;
+	spr: Sprite;
 	v = { x: 0, y: 0 };
 	angle = 0;
 	selectAnim = -1;
