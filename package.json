@@ -1,7 +1,7 @@
 {
-  "name": "dressup-game",
+  "name": "collar-me-impressed",
   "version": "1.0.1",
-  "description": "",
+  "description": "Design an elegant cat collar with ease and speed!",
   "main": "index.js",
   "scripts": {
     "start": "parcel index.html",
