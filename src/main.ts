@@ -12,7 +12,6 @@ import { resizer } from './loader';
 import { size } from './size';
 
 export const stage = new Container();
-window.stage = stage;
 let mouseSpr: ItemDraggable & {
 	up: Sprite;
 	over: Sprite;
@@ -215,4 +214,11 @@ function saveImage() {
 	a.href = url;
 	a.click();
 	a.remove();
+}
+
+// for debugging
+// @ts-ignore
+if (!window.stage) {
+	// @ts-ignore
+	window.stage = stage;
 }
