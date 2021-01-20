@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/SweetheartSquad/collar-me-impressed/compare/v1.0.2...v1.1.0) (2021-01-20)
+
+
+### Features
+
+* add save shortcut (`ctrl+s`) ([0557774](https://github.com/SweetheartSquad/collar-me-impressed/commit/0557774f08fd6badd6dc3b2d48412626c0ca10ff))
+
 ## [1.0.2](https://github.com/SweetheartSquad/collar-me-impressed/compare/v1.0.1...v1.0.2) (2021-01-20)
 
 
