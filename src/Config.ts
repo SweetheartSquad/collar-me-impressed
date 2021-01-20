@@ -18,6 +18,15 @@ export type LayerConfig =
 			};
 	  }
 	| {
+			type: 'animated';
+			x?: number;
+			y?: number;
+			data: {
+				speed?: number;
+				items: ItemConfig[];
+			};
+	  }
+	| {
 			type: 'cycle';
 			x?: number;
 			y?: number;

@@ -4,6 +4,7 @@ import { Button } from './Button';
 import { Config } from './Config';
 import { mouse } from './input-mouse';
 import { Interactive } from './Interactive';
+import { ItemAnimated } from './ItemAnimated';
 import { ItemDraggable } from './ItemDraggable';
 import { ItemStatic } from './ItemStatic';
 import { Layer } from './Layer';
@@ -72,6 +73,9 @@ export function init() {
 				const item = new ItemStatic(itemConfig);
 				layer.addChild(item.spr);
 			});
+		} else if (layerConfig.type === 'animated') {
+			const item = new ItemAnimated(layerConfig.data.items.map(i => i.spr), layerConfig.data.speed);
+			layer.addChild(item.spr);
 		} else if (layerConfig.type === 'drag-and-drop') {
 			layerConfig.data.items.forEach(itemConfig => {
 				if (itemConfig.unique) {

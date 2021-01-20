@@ -57,6 +57,22 @@ Source assets are placed in `/assets`, and include:
 				}]
 			}
 		},
+		"animated-example": {
+			// animated layers will automatically loop through each item as a frame of animation
+			// and offer no interaction
+			// these can be used to create persistent decorative elements
+			"type": "static",
+			"x": 0.5,
+			"y": 0.5,
+			"data": {
+				"speed": 1,
+				"items": [{
+					"spr": "texture-name"
+				}, {
+					"spr": "texture-name"
+				}]
+			}
+		},
 		"cycle-example": {
 			// cycle layers will render a single item,
 			// along with next/previous arrows which cycle through the rest
