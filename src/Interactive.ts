@@ -10,15 +10,18 @@ export class Interactive extends EventEmitter<'click' | 'release', never> {
 	v = { x: 0, y: 0 };
 	angle = 0;
 	selectAnim = -1;
+	scale: number;
 	id: number;
 	selected = false;
 	disposable = true;
-	constructor({ spr, x, y }: ItemConfig) {
+	constructor({ spr, x, y, scale }: ItemConfig) {
 		super();
+		this.scale = scale || 1;
 		const sprite = new Sprite(Loader.shared.resources[spr].texture);
 		sprite.anchor.x = sprite.anchor.y = 0.5;
 		sprite.x = (x || 0) * size.x;
 		sprite.y = (y || 0) * size.y;
+		sprite.scale.x = sprite.scale.y = this.scale;
 		this.spr = sprite;
 
 		Interactive.interactives.push(this);
@@ -38,8 +41,8 @@ export class Interactive extends EventEmitter<'click' | 'release', never> {
 			this.v.y = lerp(this.v.y, 0, 0.1);
 		}
 
-		this.spr.scale.x = lerp(this.spr.scale.x, 1 + Math.sin(time / 50 + this.id) * 0.3 * (1 - Math.abs(this.selectAnim)), 0.5);
-		this.spr.scale.y = lerp(this.spr.scale.y, 1 + Math.cos(time / 50 + this.id) * 0.3 * (1 - Math.abs(this.selectAnim)), 0.5);
+		this.spr.scale.x = lerp(this.spr.scale.x, this.scale + Math.sin(time / 50 + this.id) * 0.3 * (1 - Math.abs(this.selectAnim)), 0.5);
+		this.spr.scale.y = lerp(this.spr.scale.y, this.scale + Math.cos(time / 50 + this.id) * 0.3 * (1 - Math.abs(this.selectAnim)), 0.5);
 
 		this.spr.skew.x = lerp(this.spr.skew.x, this.v.x / 40, 0.1);
 		this.spr.skew.y = lerp(this.spr.skew.y, this.v.y / 40, 0.1);

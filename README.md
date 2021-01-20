@@ -38,9 +38,10 @@ Source assets are placed in `/assets`, and include:
 
 ```jsonc
 {
-	// all layers and items have `x` and `y` attributes,
+	// all layers and items have optional `x` and `y` attributes,
 	// which set their position (as an offset from their parent)
 	// they default to zero if not provided
+	// they also have `scale`, which defaults to one
 	"layers": {
 		"static-example": {
 			// static layers will simply render all items,

@@ -51,6 +51,7 @@ export function init() {
 		v: { x: 0, y: 0 },
 		angle: 0,
 		selectAnim: -1,
+		scale: 1,
 		id: 0,
 		selected: false,
 		underMouse: () => false,
