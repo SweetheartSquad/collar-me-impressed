@@ -19,5 +19,5 @@ jobs:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
           CHANNEL: win-linux-mac-stable
           ITCH_GAME: collar-me-impressed
-          ITCH_USER: seansleblanc
+          ITCH_USER: sweetheartsquad
           PACKAGE: dist
