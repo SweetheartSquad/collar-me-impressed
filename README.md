@@ -47,7 +47,7 @@ Note that the center of the mouse images are used as the pointer; you can includ
 		"y": 480
 	},
 	// scale mode (one of either "fit", "cover", "multiples", or "none")
-	"scaleMode": "cover",
+	"scaleMode": "fit",
 	// all layers and items have optional `x` and `y` attributes,
 	// which set their position (as an offset from their parent)
 	// they default to zero if not provided
