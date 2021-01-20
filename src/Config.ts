@@ -1,3 +1,5 @@
+import { ScaleModes } from "./Resizer/Resizer";
+
 export interface ItemConfig {
 	spr: string;
 	x?: number;
@@ -40,10 +42,12 @@ export type LayerConfig = {
 			type: 'drag-and-drop';
 			data: {
 				items: ItemDraggableConfig[];
-			}
+			};
 	  }
 );
 
 export interface Config {
+	size: { x: number; y: number };
+	scaleMode?: ScaleModes;
 	layers: Partial<Record<string, LayerConfig>>;
 }

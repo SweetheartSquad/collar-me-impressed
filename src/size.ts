@@ -1,1 +1,4 @@
-export const size = { x: 720, y: 480 };
+import { Loader } from 'pixi.js';
+import { Config } from './Config';
+
+export const size = (Loader.shared.resources.config.data as Config).size;

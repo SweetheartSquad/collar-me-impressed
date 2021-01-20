@@ -1,4 +1,9 @@
 {
+	"size": {
+		"x": 720,
+		"y": 480
+	},
+	"scaleMode": "cover",
 	"layers": {
 		"bg": {
 			"type": "cycle",

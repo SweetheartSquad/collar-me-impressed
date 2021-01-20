@@ -3,13 +3,12 @@ import { Loader, SCALE_MODES, settings, WRAP_MODES } from 'pixi.js';
 import { Resizer } from '../src/Resizer';
 import { Config } from './Config';
 import './focusHack';
-import { size } from './size';
 
 // pixi config
 settings.SCALE_MODE = SCALE_MODES.NEAREST;
 settings.WRAP_MODE = WRAP_MODES.MIRRORED_REPEAT;
 
-export const resizer = new Resizer(size.x, size.y, 'fit');
+export const resizer = new Resizer(1, 1, 'fit');
 
 function resourceLoad() {
 	return new Promise<void>((resolve, reject) => {
@@ -43,7 +42,8 @@ export async function load() {
 		.add('mouse_over', 'img/mouse/mouse_over.png')
 		.add('mouse_down', 'img/mouse/mouse_down.png');
 
-	Object.values((Loader.shared.resources.config.data as Config).layers).flatMap(i => i.data.items).forEach(i => Loader.shared.add(i.spr, 'img/' + i.spr + '.png'));
+	const config = Loader.shared.resources.config.data as Config;
+	Object.values(config.layers).flatMap(i => i.data.items).forEach(i => Loader.shared.add(i.spr, 'img/' + i.spr + '.png'));
 
 	Loader.shared.onProgress.add((Loader, resource) => {
 		loading.innerText = 'Loading: ' + Math.floor(Loader.progress) + '%';
@@ -52,5 +52,8 @@ export async function load() {
 	await resourceLoad();
 	const { init } = await import('./main');
 	loading.remove();
+	resizer.setSize(config.size.x, config.size.y);
+	resizer.scaleMode = config.scaleMode || 'fit';
+	resizer.onResize();
 	init();
 }

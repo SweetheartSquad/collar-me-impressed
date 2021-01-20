@@ -86,8 +86,8 @@ export class Resizer {
 	scaleMultiplier: number;
 
 	constructor(
-		public baseWidth: number,
-		public baseHeight: number,
+		private baseWidth: number,
+		private baseHeight: number,
 		public scaleMode: ScaleModes = 'fit'
 	) {
 		this.element = document.createElement('div');
@@ -99,6 +99,13 @@ export class Resizer {
 
 		window.onresize = this.onResize;
 
+		this.onResize();
+	}
+
+	setSize(x: number, y: number) {
+		this.baseWidth = x;
+		this.baseHeight = y;
+		this.ratio = this.baseWidth / this.baseHeight;
 		this.onResize();
 	}
 
