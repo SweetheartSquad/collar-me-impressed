@@ -20,7 +20,7 @@
     "howler": "^2.2.1",
     "howler-pixi-loader-middleware": "^1.0.2",
     "jquery": "^3.5.1",
-    "pixi.js": "^5.3.6"
+    "pixi.js": "^5.3.7"
   },
   "release": {
     "plugins": [
