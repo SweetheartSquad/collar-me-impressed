@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/SweetheartSquad/collar-me-impressed/compare/v1.2.0...v1.2.1) (2021-01-28)
+
+
+### Bug Fixes
+
+* add try-catch around config to help debugging ([bf333d5](https://github.com/SweetheartSquad/collar-me-impressed/commit/bf333d5ba53d3ef485fce029a963dd3fe4a986d1))
+
 # [1.2.0](https://github.com/SweetheartSquad/collar-me-impressed/compare/v1.1.1...v1.2.0) (2021-01-20)
 
 
