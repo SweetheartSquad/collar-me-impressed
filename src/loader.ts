@@ -28,7 +28,12 @@ export async function load() {
 	Loader.shared.baseUrl = 'assets';
 	Loader.shared.pre(HowlerMiddleware);
 	Loader.shared.add('config', 'config.json');
-	await resourceLoad();
+	try {
+		await resourceLoad();
+	} catch (err) {
+		console.error('Failed to load config', err);
+		throw err;
+	}
 
 	Loader.shared
 		.add('bgm', 'audio/bgm.mp3')
