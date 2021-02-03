@@ -10,6 +10,7 @@ import { ItemStatic } from './ItemStatic';
 import { Layer } from './Layer';
 import { resizer } from './loader';
 import { size } from './size';
+import { clamp } from './utils';
 
 export const stage = new Container();
 stage.filters = [];
@@ -263,16 +264,27 @@ function render() {
 
 function saveImage() {
 	const config = Loader.shared.resources.config.data as Config;
+	let { x, y, w, h } = config.crop || {};
+	x = clamp(0, x || 0, 1);
+	y = clamp(0, y || 0, 1);
+	w = clamp(0, w || 0, 1 - x);
+	h = clamp(0, h || 0, 1 - y);
 	hideOnSave.forEach(i => {
 		i.visible = false;
 	});
-	const t = new RenderTexture(new BaseRenderTexture({ width: size.x, height: size.y }), new Rectangle(
-		(config.crop.x || 0) * size.x,
-		(config.crop.y || 0) * size.y,
-		(config.crop.w || 1.0) * size.x,
-		(config.crop.h || 1.0) * size.y,
-	));
-	renderer.render(stage, t, true, undefined, true);
+	const t = new RenderTexture(
+		new BaseRenderTexture({ width: size.x, height: size.y }),
+		new Rectangle(
+			0,
+			0,
+			w * size.x,
+			h * size.y
+		)
+	);
+
+	const m = new PIXI.Matrix();
+	m.translate(x * -size.x, y * -size.y);
+	renderer.render(stage, t, true, m, true);
 	hideOnSave.forEach(i => {
 		i.visible = true;
 	});
