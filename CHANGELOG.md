@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/SweetheartSquad/collar-me-impressed/compare/v1.3.0...v1.3.1) (2021-02-03)
+
+
+### Bug Fixes
+
+* default crop width/height to 1 instead of 0 ([af06809](https://github.com/SweetheartSquad/collar-me-impressed/commit/af0680917df3fc133ea53623ff6074e1d2e6ba7d))
+
 # [1.3.0](https://github.com/SweetheartSquad/collar-me-impressed/compare/v1.2.1...v1.3.0) (2021-02-03)
 
 
