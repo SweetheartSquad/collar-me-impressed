@@ -64,5 +64,6 @@ export type LayerConfig = {
 export interface Config {
 	size: { x: number; y: number };
 	scaleMode?: ScaleModes;
+	crop?: { x?: number; y?: number; w?: number; h?: number };
 	layers: Partial<Record<string, LayerConfig>>;
 }

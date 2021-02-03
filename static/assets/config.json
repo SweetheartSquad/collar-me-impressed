@@ -4,6 +4,12 @@
 		"y": 480
 	},
 	"scaleMode": "fit",
+	"crop": {
+		"x": 0.5,
+		"y": 0.0,
+		"w": 1.0,
+		"h": 0.5
+	},
 	"layers": {
 		"bg": {
 			"type": "cycle",

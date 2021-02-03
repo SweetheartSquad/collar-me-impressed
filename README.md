@@ -48,6 +48,13 @@ Note that the center of the mouse images are used as the pointer; you can includ
 	},
 	// scale mode (one of either "fit", "cover", "multiples", or "none")
 	"scaleMode": "fit",
+	// percentage of screen to crop in output (default is the full screen)
+	"crop": {
+		"x": 0.0,
+		"y": 0.0,
+		"w": 1.0,
+		"h": 1.0
+	},
 	// all layers and items have optional `x` and `y` attributes,
 	// which set their position (as an offset from their parent)
 	// they default to zero if not provided

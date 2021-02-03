@@ -1,5 +1,5 @@
 import { Howl } from 'howler';
-import { autoDetectRenderer, Container, DisplayObject, Filter, Loader, Renderer, Sprite, Ticker } from 'pixi.js';
+import { autoDetectRenderer, BaseRenderTexture, Container, DisplayObject, Filter, Loader, Rectangle, Renderer, RenderTexture, Sprite, Ticker } from 'pixi.js';
 import { Button } from './Button';
 import { Config } from './Config';
 import { mouse } from './input-mouse';
@@ -262,16 +262,21 @@ function render() {
 }
 
 function saveImage() {
+	const config = Loader.shared.resources.config.data as Config;
 	hideOnSave.forEach(i => {
 		i.visible = false;
 	});
-	renderer.preserveDrawingBuffer = true;
-	render();
-	renderer.preserveDrawingBuffer = false;
+	const t = new RenderTexture(new BaseRenderTexture({ width: size.x, height: size.y }), new Rectangle(
+		(config.crop.x || 0) * size.x,
+		(config.crop.y || 0) * size.y,
+		(config.crop.w || 1.0) * size.x,
+		(config.crop.h || 1.0) * size.y,
+	));
+	renderer.render(stage, t, true, undefined, true);
 	hideOnSave.forEach(i => {
 		i.visible = true;
 	});
-	const url = renderer.view.toDataURL();
+	const url = renderer.extract.canvas(t).toDataURL();
 	const a = document.createElement('a');
 	document.body.append(a);
 	a.download = 'my cat';
