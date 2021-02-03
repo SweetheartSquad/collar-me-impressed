@@ -267,8 +267,8 @@ function saveImage() {
 	let { x, y, w, h } = config.crop || {};
 	x = clamp(0, x || 0, 1);
 	y = clamp(0, y || 0, 1);
-	w = clamp(0, w || 0, 1 - x);
-	h = clamp(0, h || 0, 1 - y);
+	w = clamp(0, w || 1, 1 - x);
+	h = clamp(0, h || 1, 1 - y);
 	hideOnSave.forEach(i => {
 		i.visible = false;
 	});
