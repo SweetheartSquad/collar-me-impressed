@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/SweetheartSquad/collar-me-impressed/compare/v1.2.1...v1.3.0) (2021-02-03)
+
+
+### Features
+
+* add `crop` options to config ([076ccea](https://github.com/SweetheartSquad/collar-me-impressed/commit/076ccea05dbaadba7b2592f10fad3e2cb0681959))
+
 ## [1.2.1](https://github.com/SweetheartSquad/collar-me-impressed/compare/v1.2.0...v1.2.1) (2021-01-28)
 
 
